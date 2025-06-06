@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Balance Partitioning Results</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background: #f9f9f9;
+  }
+  h1, h2 {
+    color: #2c3e50;
+  }
+  .plot-container {
+    margin-bottom: 40px;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px #ccc;
+  }
+  .caption {
+    margin-top: 8px;
+    font-style: italic;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h1>Global Water Balance Partitioning Analysis from 1950 to 2019 (70 years)</h1>
+
+<p>This is a basic analysis to depict change ins the water balance partitioning globally, represented by runoff divided by precipitation (R/P).</p>
+<p>Annual values of P were calculated from GPCC data G at 0.25º from 1950 to 2019. Annual values can be found in input/precipitation.nc</p>
+<p>Annual values of R were calculated from ERA5-Land monthly averaged data from 1950 to 2019, it was regridded from 0.1º to 0.25º to match P data. Annual values can be found in input/runoff.nc</p>
+<p>This page shows the decadal average plots and the anomaly plot between the first and last decade of R/P.</p>
+
+
+<h2>Animated Water Balance Partitioning (1950–2019)</h2>
+<video controls autoplay loop width="800">
+  <source src="output/bal_par.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- Animation -->
+<h2>Animated Water Balance Partitioning (1950–2019)</h2>
+<img src="output/bal_par.gif" alt="Water Balance Animation" width="900">
+
+
+<!-- Decadal plots -->
+<h2>Decadal Average Plots</h2>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_1_10.png" alt="Balance Partitioning Years 1-10" />
+  <div class="caption">Balance Partitioning Years 1-10</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_11_20.png" alt="Balance Partitioning Years 11-20" />
+  <div class="caption">Balance Partitioning Years 11-20</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_21_30.png" alt="Balance Partitioning Years 21-30" />
+  <div class="caption">Balance Partitioning Years 21-30</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_31_40.png" alt="Balance Partitioning Years 31-40" />
+  <div class="caption">Balance Partitioning Years 31-40</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_41_50.png" alt="Balance Partitioning Years 41-50" />
+  <div class="caption">Balance Partitioning Years 41-50</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_51_60.png" alt="Balance Partitioning Years 51-60" />
+  <div class="caption">Balance Partitioning Years 51-60</div>
+</div>
+
+<div class="plot-container">
+  <img src="output/bal_par_decade_61_70.png" alt="Balance Partitioning Years 61-70" />
+  <div class="caption">Balance Partitioning Years 61-70</div>
+</div>
+
+<!-- Anomaly plot -->
+<h2>Anomaly Plot</h2>
+<div class="plot-container">
+  <img src="output/anomaly.png" alt="Balance Partitioning Anomaly" />
+  <div class="caption">Anomaly: Last Decade minus First Decade (without outliers)</div>
+</div>
+
+</body>
+</html>
+
