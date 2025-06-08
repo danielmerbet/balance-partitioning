@@ -44,19 +44,34 @@ for (i in 1:70) {
   # Filtrar valores entre 0 y 1
   df_filtered <- df[df$balance >= 0 & df$balance <= 1, ]
   
-  p <- ggplot(df_filtered, aes(x = lon, y = lat, fill = balance)) +
-    geom_raster() +
-    coord_fixed() +
-    scale_fill_viridis_c(option = "plasma", na.value = "transparent", limits = c(0,1)) +
-    labs(title = paste0("Water balance partitioning (R/P): ", i+1949),
-         x = "Longitude", y = "Latitude", fill = "Balance") +
+  #p <- ggplot(df_filtered, aes(x = lon, y = lat, fill = balance)) +
+  #  geom_raster() +
+  #  coord_fixed() +
+  #  scale_fill_viridis_c(option = "plasma", na.value = "transparent", limits = c(0,1)) +
+  #  labs(title = paste0("Water balance partitioning (R/P): ", i+1949),
+  #       x = "Longitude", y = "Latitude", fill = "Balance") +
+
+    
+    p <- ggplot(df_filtered, aes(x = lon, y = lat, fill = balance)) +
+      geom_raster() +
+      coord_fixed() +
+      scale_fill_viridis_c(option = "plasma", na.value = "transparent", limits = c(0, 1)) +
+      labs(title = paste0("Water balance partitioning (R/P): ", i + 1949),
+           x = NULL, y = NULL, fill = "Balance") +  # Remove axis labels if not needed
+      theme_minimal(base_size = 10) +
+      theme(
+        plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),  # Top, right, bottom, left
+        plot.title = element_text(hjust = 0.5, size = 12, margin = margin(b = 5)),
+        legend.position = "right"
+      ) +
     theme_bw()+
     theme(
       panel.grid = element_blank(),
       panel.border = element_blank()
-    )
+)
   
-  ggsave(filename = sprintf(paste0(dir, "frames/bal_par_%02d.png"), i), plot = p, width = 8, height = 4)
+  ggsave(filename = sprintf(paste0(dir, "frames/bal_par_%02d.png"), i), plot = p, 
+         width = 8, height = 4, dpi = 300)
 }
 
 library(gifski)
@@ -89,10 +104,20 @@ plot_decade <- function(start_year, end_year, bal_par, lon, lat, dir_out) {
   p <- ggplot(df_filtered, aes(x = lon, y = lat, fill = balance)) +
     geom_raster() +
     coord_fixed() +
-    scale_fill_viridis_c(option = "plasma", na.value = "transparent", limits = c(0,1)) +
+    scale_fill_viridis_c(option = "plasma", na.value = "transparent", limits = c(0, 1)) +
     labs(title = paste0("Water balance partitioning (R/P): ", start_year+1949, "-", end_year+1949),
-         x = "Longitude", y = "Latitude", fill = "Balance") +
-    theme_minimal()
+         x = "Longitude", y = "Latitude", fill = "Balance") +  # Remove axis labels if not needed
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),  # Top, right, bottom, left
+      plot.title = element_text(hjust = 0.5, size = 12, margin = margin(b = 5)),
+      legend.position = "right"
+    ) +
+    theme_bw()+
+    theme(
+      panel.grid = element_blank(),
+      panel.border = element_blank()
+    )
   
   # Guardar en PDF
   file_out <- file.path(dir_out, paste0("bal_par_decade_", start_year, "_", end_year, ".pdf"))
